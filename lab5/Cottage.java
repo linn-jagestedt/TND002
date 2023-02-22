@@ -2,15 +2,15 @@ package lab5;
 
 public class Cottage extends Building
 {
-    private double electricity;
+    private double _electricity;
     
     public Cottage(String address, double price, int area, double electricity) 
     {
         super(address, price, area);
-        this.electricity = electricity;
+        _electricity = electricity;
     }
 
     public double maintanance() {
-        return 0;
+        return _electricity;
     }
 }

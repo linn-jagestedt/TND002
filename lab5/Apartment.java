@@ -2,22 +2,22 @@ package lab5;
 
 public class Apartment extends Building implements CityProperty
 {
-    private double monthlyFee;
-    private int bedrooms;
+    private double _monthlyFee;
+    private int _bedrooms;
 
-    public Apartment(String s, double d, int i, double monthlyFee, int bedrooms) 
+    public Apartment(String address, double price, int area, double monthlyFee, int bedrooms) 
     {
-        super(s, bedrooms, i);
+        super(address, price, area);
         
-        this.monthlyFee = monthlyFee;
-        this.bedrooms = bedrooms;
+        _monthlyFee = monthlyFee;
+        _bedrooms = bedrooms;
     }
 
     public double maintanance() {
-        return 0;
+        return _monthlyFee;
     }
 
     public double computePropertyTax() {
-        return 10 * area + 50 * bedrooms;
+        return 10 * area + 50 * _bedrooms;
     }
 }
