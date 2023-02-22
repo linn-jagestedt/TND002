@@ -42,9 +42,10 @@ public class Account {
 	public Account (CurrentAccount account) 
 	{
 		otherAccount = account;
-		balance = -account.getBalance();
+		balance = account.getBalance();
 		accountNumber = account.getAccountNumber();
 		customer = account.getCustomer();
+		transactions = new ArrayList<>();
 	}
 
 	public int getAccountNumber() {

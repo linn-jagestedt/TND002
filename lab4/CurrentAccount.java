@@ -31,7 +31,7 @@ public class CurrentAccount extends Account
             transactions.add("To savings account: " + amount);
             otherAccount.transactions.add("From current account: " + amount);
         } 
-        else if (amount <= 0) 
+        else if (amount < 0) 
         {
             amount = -amount;
 
@@ -63,14 +63,13 @@ public class CurrentAccount extends Account
 
                 if (savingsBalance > -getBalance()) {
                     savings(getBalance());
-                    setBalance(0);
                 } else {
                     savings(-savingsBalance);
-                    setBalance(getBalance() + savingsBalance);
                 }
             }
             
             if (getBalance() < 0) {
+                transactions.add("Covered by loan: " + -getBalance());
                 bank.getLoan(this);
             }
         }

@@ -82,6 +82,15 @@ public class Bank
             result += "\n" + otherAccount.toString();
         } 
 
+        for (int i = 0; i < loans.size(); i++)
+        {
+            Loan loan = loans.get(i);
+            
+            if (loan.otherAccount == current) {
+                result += "\n" + loan.toString();
+            }
+        }
+        
         return result;
     }
 
@@ -98,6 +107,7 @@ public class Bank
 
     public void getLoan(CurrentAccount account) {
         loans.add(new Loan(account));
+        account.setBalance(0);
     }
     
     public void cashPayment(String customer, double amount) 
@@ -108,6 +118,8 @@ public class Bank
                 double result = loan.payOff(amount);
                 if (result > 0) {
                     amount = result;
+                    loans.remove(i);
+                    i--;
                 } else {
                     return;
                 }
@@ -143,12 +155,14 @@ public class Bank
                 savings += account.getBalance();
             } else if (account instanceof CurrentAccount) {
                 current += account.getBalance();
-            } else if (account instanceof Loan) {
-                debt += account.getBalance();
             }
         }
 
-        result += "Money in current / savings accounts / debt: " + current + " / " +  savings + " / " + debt + "\n";
+        for (int i = 0; i < loans.size(); i++) {
+            debt += loans.get(i).getBalance();
+        }
+
+        result += "Money in current / savings accounts and debt: " + current + " / " +  savings + " / " + debt;
 
         return result; 
     };
