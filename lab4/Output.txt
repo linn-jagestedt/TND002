@@ -1,0 +1,275 @@
+Setting up the accounts
+Current and savings accounts created
+Current and savings accounts created
+Current and savings accounts created
+Current account created
+Bank: Great Northern Bank
+Accounts: 7
+Loans: 0
+Money in current / savings accounts and debt: 8000.0 / 6000.0 / 0.0
+
+Transfer below maximum of current account
+
+Peter
+
+Current Account: 1000.0
+Sent to account of Sofia: 1000.0
+
+Savings Account: 2000.0
+
+Sofia
+
+Current Account: 3000.0
+Received from account of Peter: 1000.0
+
+Savings Account: 2000.0
+
+
+Transfer of remainder of current account
+
+Peter
+
+Current Account: 0.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+
+Savings Account: 2000.0
+
+
+Transfer of more money than on current account
+
+Peter
+
+Current Account: 0.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+Received from account of Sofia: 100.0
+Sent to account of Sofia: 1000.0
+From savings account: 900.0
+
+Savings Account: 1100.0
+To current account: 900.0
+
+
+Transfer of more money than on current + savings accounts
+
+Peter
+
+Current Account: 0.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+Received from account of Sofia: 100.0
+Sent to account of Sofia: 1000.0
+From savings account: 900.0
+Sent to account of Sofia: 1500.0
+From savings account: 1100.0
+Covered by a loan: 400.0
+
+Savings Account: 0.0
+To current account: 900.0
+To current account: 1100.0
+
+Loan: -400.0
+
+Sofia
+
+Current Account: 6400.0
+Received from account of Peter: 1000.0
+Received from account of Peter: 1000.0
+Sent to account of Peter: 100.0
+Received from account of Peter: 1000.0
+Received from account of Peter: 1500.0
+
+Savings Account: 2000.0
+
+Bank: Great Northern Bank
+Accounts: 7
+Loans: 1
+Money in current / savings accounts and debt: 10400.0 / 4000.0 / -400.0
+
+Taking the second loan
+
+Peter
+
+Current Account: 0.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+Received from account of Sofia: 100.0
+Sent to account of Sofia: 1000.0
+From savings account: 900.0
+Sent to account of Sofia: 1500.0
+From savings account: 1100.0
+Covered by a loan: 400.0
+Sent to account of Sofia: 1500.0
+Covered by a loan: 1500.0
+
+Savings Account: 0.0
+To current account: 900.0
+To current account: 1100.0
+
+Loan: -400.0
+
+Loan: -1500.0
+
+Sofia
+
+Current Account: 7900.0
+Received from account of Peter: 1000.0
+Received from account of Peter: 1000.0
+Sent to account of Peter: 100.0
+Received from account of Peter: 1000.0
+Received from account of Peter: 1500.0
+Received from account of Peter: 1500.0
+
+Savings Account: 2000.0
+
+Bank: Great Northern Bank
+Accounts: 7
+Loans: 2
+Money in current / savings accounts and debt: 11900.0 / 4000.0 / -1900.0
+
+Testing debt for account without savings account
+
+Alex
+
+Current Account: 0.0
+Sent to account of Sofia: 5000.0
+Covered by a loan: 3000.0
+
+Loan: -3000.0
+
+Sofia
+
+Current Account: 12900.0
+Received from account of Peter: 1000.0
+Received from account of Peter: 1000.0
+Sent to account of Peter: 100.0
+Received from account of Peter: 1000.0
+Received from account of Peter: 1500.0
+Received from account of Peter: 1500.0
+Received from account of Alex: 5000.0
+
+Savings Account: 2000.0
+
+
+Pay off Peter's loans
+
+Peter
+
+Current Account: 0.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+Received from account of Sofia: 100.0
+Sent to account of Sofia: 1000.0
+From savings account: 900.0
+Sent to account of Sofia: 1500.0
+From savings account: 1100.0
+Covered by a loan: 400.0
+Sent to account of Sofia: 1500.0
+Covered by a loan: 1500.0
+
+Savings Account: 0.0
+To current account: 900.0
+To current account: 1100.0
+
+Loan: -400.0
+
+Loan: -1500.0
+
+Peter
+
+Current Account: 0.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+Received from account of Sofia: 100.0
+Sent to account of Sofia: 1000.0
+From savings account: 900.0
+Sent to account of Sofia: 1500.0
+From savings account: 1100.0
+Covered by a loan: 400.0
+Sent to account of Sofia: 1500.0
+Covered by a loan: 1500.0
+
+Savings Account: 0.0
+To current account: 900.0
+To current account: 1100.0
+
+Loan: -100.0
+Paid off: 300.0
+
+Loan: -1500.0
+
+Peter
+
+Current Account: 0.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+Received from account of Sofia: 100.0
+Sent to account of Sofia: 1000.0
+From savings account: 900.0
+Sent to account of Sofia: 1500.0
+From savings account: 1100.0
+Covered by a loan: 400.0
+Sent to account of Sofia: 1500.0
+Covered by a loan: 1500.0
+
+Savings Account: 0.0
+To current account: 900.0
+To current account: 1100.0
+
+Loan: -1300.0
+Paid off: 200.0
+
+Peter
+
+Current Account: 100.0
+Sent to account of Sofia: 1000.0
+Sent to account of Sofia: 1000.0
+Received from account of Sofia: 100.0
+Sent to account of Sofia: 1000.0
+From savings account: 900.0
+Sent to account of Sofia: 1500.0
+From savings account: 1100.0
+Covered by a loan: 400.0
+Sent to account of Sofia: 1500.0
+Covered by a loan: 1500.0
+Cash payment: 100.0
+
+Savings Account: 0.0
+To current account: 900.0
+To current account: 1100.0
+
+Bank: Great Northern Bank
+Accounts: 7
+Loans: 1
+Money in current / savings accounts and debt: 15000.0 / 4000.0 / -3000.0
+
+Testing annualChange() on current and savings accounts
+
+Olga
+
+Current Account: 2000.0
+
+Savings Account: 2000.0
+
+Olga
+
+Current Account: 1990.0
+
+Savings Account: 2020.0
+
+Olga
+
+Current Account: 0.0
+Sent to account of Sofia: 1990.0
+
+Savings Account: 2020.0
+
+Olga
+
+Current Account: 0.0
+Sent to account of Sofia: 1990.0
+
+Savings Account: 2040.2
+
+Loan: -10.5

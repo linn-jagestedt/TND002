@@ -1,0 +1,19 @@
+Word: 2022   Count: 1
+Word: and   Count: 1
+Word: are   Count: 1
+Word: blah   Count: 1
+Word: else   Count: 1
+Word: everything   Count: 1
+Word: great   Count: 1
+Word: great
+bla   Count: 1
+Word: hello   Count: 2
+Word: hello
+oh   Count: 1
+Word: how   Count: 1
+Word: is   Count: 2
+Word: this   Count: 1
+Word: world   Count: 1
+Word: yeah   Count: 1
+Word: year   Count: 1
+Word: you   Count: 1
