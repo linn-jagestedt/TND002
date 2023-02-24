@@ -24,7 +24,7 @@ public abstract class Building implements Comparable<Building>
         if (selection == 1) {
             return _price > b._price ? 1 : _price < b._price ? -1 : 0;
         } else {
-            return _price > b.area ? 1 : _price < b.area ? -1 : 0;
+            return area > b.area ? 1 : area < b.area ? -1 : 0;
         }
     }
 

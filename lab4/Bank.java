@@ -130,9 +130,14 @@ public class Bank
         account.receive("Cash payment", amount);
     }
 
-    public void computeAnnualChange() {
+    public void computeAnnualChange() 
+    {
         for (int i = 0; i < accounts.size(); i++) {
             accounts.get(i).annualChange();
+        }
+
+        for (int i = 0; i < loans.size(); i++) {
+            loans.get(i).annualChange();
         }
     }
 
