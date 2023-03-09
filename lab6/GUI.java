@@ -27,12 +27,10 @@ public class GUI extends JFrame
     {
         _phoneBook = new PhoneBook();
 
-        // Set GUI properties
         setTitle("Interactive phone book");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setFont(new Font("SansSerif", Font.PLAIN, 20));
 
-        // Create buttons
         _loadButton = new JButton("Load phonebook");
         _saveButton = new JButton("Save phonebook");
         _searchButton = new JButton("Search");
@@ -40,7 +38,6 @@ public class GUI extends JFrame
         _addButton = new JButton("Add");
         _deleteButton = new JButton("Delete");
 
-        // Set button actions
         _loadButton.addActionListener(new LoadButtonListener());
         _saveButton.addActionListener(new SaveButtonListener());
         _searchButton.addActionListener(new SearchButtonListener());
@@ -48,25 +45,32 @@ public class GUI extends JFrame
         _addButton.addActionListener(new AddButtonListener());
         _deleteButton.addActionListener(new DeleteButtonListener());
 
-        // Create text fields
         _searchField = new JTextField();
         _nameField = new JTextField();
         _numberField = new JTextField();
 
         _searchField.setText("lab6/PhoneList.txt");
 
-        // Disable buttons except for loadButton
         _saveButton.setEnabled(false);
         _searchButton.setEnabled(false);
         _nextButton.setEnabled(false);
         _addButton.setEnabled(false);
         _deleteButton.setEnabled(false);
 
-        // Create panels
+        _searchResult = new ArrayList<>();
+        _searchResultCounter = 0;
+
+        createGridLayout();
+
+        pack();
+        setVisible(true);
+    }
+
+    public void createGridLayout() 
+    {
         JPanel buttonPanel = new JPanel(new GridLayout(3, 2));
         JPanel textPanel = new JPanel(new GridLayout(3, 1));
 
-        // Add buttons to button panel
         buttonPanel.add(_loadButton);
         buttonPanel.add(_saveButton);
         buttonPanel.add(_searchButton);
@@ -74,22 +78,13 @@ public class GUI extends JFrame
         buttonPanel.add(_addButton);
         buttonPanel.add(_deleteButton);
 
-        // Add text fields to text panel
         textPanel.add(_searchField);
         textPanel.add(_nameField);
         textPanel.add(_numberField);
 
-        // Add panels to content pane
         Container contentPane = getContentPane();
         contentPane.add(buttonPanel, BorderLayout.WEST);
         contentPane.add(textPanel, BorderLayout.CENTER);
-
-        _searchResult = new ArrayList<>();
-        _searchResultCounter = 0;
-
-        // Pack and show GUI
-        pack();
-        setVisible(true);
     }
 
     private class LoadButtonListener implements ActionListener 
@@ -126,21 +121,28 @@ public class GUI extends JFrame
 
     private class SearchButtonListener implements ActionListener 
     {
-        public void actionPerformed(ActionEvent e) {
-            String query = _searchField.getText();
-            ArrayList<Person> results = _phoneBook.search(query);
-            if (results.isEmpty()) {
+        public void actionPerformed(ActionEvent e) 
+        {
+            _searchResult = _phoneBook.search(_searchField.getText());
+            _searchResultCounter = 0;
+
+            if (_searchResult.isEmpty()) 
+            {
                 _nameField.setText("No results found");
                 _numberField.setText("");
-            } else {
-                _searchResult = results;
-                
+            } 
+            else 
+            {                
                 Person firstResult = _searchResult.get(0);
                 _nameField.setText(firstResult.getFullName());
                 _numberField.setText(Integer.toString(firstResult.getPhoneNumber()));
                 
-                _searchResultCounter = 1;
-                _nextButton.setEnabled(_searchResult.size() > 1);
+                if (_searchResult.size() > 1) {
+                    _searchResultCounter++;
+                    _nextButton.setEnabled(true);
+                } else {
+                    _nextButton.setEnabled(false);
+                }
             }
         }
     }
@@ -153,8 +155,12 @@ public class GUI extends JFrame
             _nameField.setText(result.getFullName());
             _numberField.setText(Integer.toString(result.getPhoneNumber()));
 
-            _searchResultCounter++;
-            _nextButton.setEnabled(_searchResult.size() > _searchResultCounter);
+            if (_searchResult.size() > _searchResultCounter) {
+                _searchResultCounter++;
+            } else {
+                _searchResultCounter = 0;
+                _nextButton.setEnabled(false);
+            }
         }
     }
 
