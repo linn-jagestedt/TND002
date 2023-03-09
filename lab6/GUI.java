@@ -63,6 +63,7 @@ public class GUI extends JFrame
         createGridLayout();
 
         pack();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -83,8 +84,10 @@ public class GUI extends JFrame
         textPanel.add(_numberField);
 
         Container contentPane = getContentPane();
-        contentPane.add(buttonPanel, BorderLayout.WEST);
-        contentPane.add(textPanel, BorderLayout.CENTER);
+        contentPane.setLayout(new GridLayout(1, 2));
+
+        contentPane.add(buttonPanel);
+        contentPane.add(textPanel);
     }
 
     private class LoadButtonListener implements ActionListener 
