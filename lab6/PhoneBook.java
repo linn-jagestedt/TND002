@@ -55,7 +55,7 @@ public class PhoneBook
         return result;
     }
 
-    public String deletPerson(String fullName, int phoneNumber) 
+    public String deletePerson(String fullName, int phoneNumber) 
     {
         for (int i = 0; i < _people.size(); i++) 
         {
@@ -72,9 +72,9 @@ public class PhoneBook
 
     public Boolean addPerson(String fullName, int phoneNumber) 
     {
-        String[] names = fullName.split(" ");
+        String[] tokens = fullName.split(" ");
 
-        if (names.length != 2) {
+        if (tokens.length != 2) {
             return false;
         }
 
@@ -85,7 +85,7 @@ public class PhoneBook
             }
         }
 
-        _people.add(new Person(names[0], names[1], phoneNumber));
+        _people.add(new Person(tokens[0], tokens[1], phoneNumber));
         return true;
     }
 
