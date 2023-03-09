@@ -1,28 +1,53 @@
 package lab6;
 
 import java.util.ArrayList;
+import java.io.*;
 
 public class PhoneBook
 {
-    private ArrayList<Person> _numbers;
+    private ArrayList<Person> _people;
 
     public PhoneBook() {
-        _numbers = new ArrayList<>();
+        _people = new ArrayList<>();
     }
 
-    public String load(String file) {
+    public String load(String fileName) 
+    {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            String line;
+            
+            while ((line = br.readLine()) != null) 
+            {
+                String[] tokens = line.trim().split(" ");
 
+                if(tokens.length != 3) {
+                    continue;
+                }
+
+                _people.add(
+                    new Person(
+                        tokens[0], 
+                        tokens[1], 
+                        Integer.parseInt(tokens[2])
+                    )
+                );
+            }
+
+            br.close();
+            return "Phone book loaded";
+        } catch (IOException e) {
+            return "try again";
+        }
     }
 
-    public ArrayList<Person> search(String searString) 
+    public ArrayList<Person> search(String searchString) 
     {
         ArrayList<Person> result = new ArrayList<>();
 
-        for (int i = 0; i < _numbers.size(); i++) 
+        for (Person person : _people) 
         {
-            Person person = _numbers.get(i);
-
-            if (person.getSurname() == searString || String.valueOf(person.getPhoneNumber()) == searString) {
+            if (person.getSurname().equals(searchString) || String.valueOf(person.getPhoneNumber()) == searchString) {
                 result.add(person);
             }
         }
@@ -32,12 +57,12 @@ public class PhoneBook
 
     public String deletPerson(String fullName, int phoneNumber) 
     {
-        for (int i = 0; i < _numbers.size(); i++) 
+        for (int i = 0; i < _people.size(); i++) 
         {
-            Person person = _numbers.get(i);
+            Person person = _people.get(i);
 
-            if (person.getFullName() == fullName && person.getPhoneNumber() == phoneNumber) {
-                _numbers.remove(i);
+            if (person.getFullName().equals(fullName) && person.getPhoneNumber() == phoneNumber) {
+                _people.remove(i);
                 return "Person deleted";
             }
         }
@@ -53,22 +78,34 @@ public class PhoneBook
             return false;
         }
 
-        for (int i = 0; i < _numbers.size(); i++) 
+        for (Person person : _people) 
         {
-            Person person = _numbers.get(i);
-
-            if (person.getFullName() == fullName && person.getPhoneNumber() == phoneNumber) {
+            if (person.getFullName().equals(fullName) && person.getPhoneNumber() == phoneNumber) {
                 return false;
             }
         }
 
-        _numbers.add(new Person(names[0], names[1], phoneNumber));
+        _people.add(new Person(names[0], names[1], phoneNumber));
         return true;
     }
 
-    public String save(String s) 
+    public String save(String fileName) 
     {
+        try 
+        {
+            FileWriter fw = new FileWriter(fileName);
 
+            for (Person person : _people) {
+                String fullName = String.format("%-20s", person.getFullName());
+                String phoneNumber = String.format("%5d", person.getPhoneNumber());
+                fw.write(fullName + phoneNumber + "\n");
+            }
+
+            fw.close();
+            return "Saved " + _people.size() + " people to the file";
+        } catch (IOException e) {
+            return "Could not save to the file";
+        }
     }
 }
 
