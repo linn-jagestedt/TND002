@@ -57,6 +57,9 @@ public class GUI extends JFrame
         _addButton.setEnabled(false);
         _deleteButton.setEnabled(false);
 
+        _nameField.setEditable(false);
+        _numberField.setEditable(false);
+
         _searchResult = new ArrayList<>();
         _searchResultCounter = 0;
 
@@ -83,21 +86,23 @@ public class GUI extends JFrame
         textPanel.add(_nameField);
         textPanel.add(_numberField);
 
-        Container contentPane = getContentPane();
-        contentPane.setLayout(new GridLayout(1, 2));
+        Container container = getContentPane();
+        container.setLayout(new GridLayout(1, 2));
 
-        contentPane.add(buttonPanel);
-        contentPane.add(textPanel);
+        container.add(buttonPanel);
+        container.add(textPanel);
     }
 
     private class LoadButtonListener implements ActionListener 
     {
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) 
+        {
             String filename = _searchField.getText();
             _searchField.setText("");
-            String result = _phoneBook.load(filename);
-            if (result.equals("Phone book loaded")) {
-                _nameField.setText(result);
+            
+            if (_phoneBook.load(filename) == "Phone book loaded") 
+            {
+                _nameField.setText("Phone book loaded");
                 _saveButton.setEnabled(true);
                 _searchButton.setEnabled(true);
                 _addButton.setEnabled(true);
@@ -110,14 +115,15 @@ public class GUI extends JFrame
 
     private class SaveButtonListener implements ActionListener 
     {
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) 
+        {
             String filename = _searchField.getText();
             _searchField.setText("");
+            
             if (filename.isEmpty()) {
                 _nameField.setText("Provide a file name");
             } else {
-                String result = _phoneBook.save(filename);
-                _nameField.setText(result);
+                _nameField.setText(_phoneBook.save(filename));
             }
         }
     }
@@ -157,10 +163,9 @@ public class GUI extends JFrame
             Person result = _searchResult.get(_searchResultCounter);
             _nameField.setText(result.getFullName());
             _numberField.setText(Integer.toString(result.getPhoneNumber()));
+            _searchResultCounter++;
 
-            if (_searchResult.size() > _searchResultCounter) {
-                _searchResultCounter++;
-            } else {
+            if (_searchResult.size() <= _searchResultCounter) {
                 _searchResultCounter = 0;
                 _nextButton.setEnabled(false);
             }
@@ -182,8 +187,7 @@ public class GUI extends JFrame
 
                 _numberField.setText("");
                 _numberField.setEditable(true);
-            } else 
-            {
+            } else {
                 Boolean success = _phoneBook.addPerson(
                     _nameField.getText(), 
                     Integer.parseInt(_numberField.getText())
@@ -209,11 +213,14 @@ public class GUI extends JFrame
         public void actionPerformed(ActionEvent e) 
         {
             _searchField.setText(
-                _phoneBook.deletPerson(
+                _phoneBook.deletePerson(
                     _nameField.getText(), 
                     Integer.parseInt(_numberField.getText())
                 )
             );
+            
+            _nameField.setText("");
+            _numberField.setText("");
         }
     }
 }
